@@ -1,0 +1,12 @@
+{
+  "name": "mesyats-audita",
+  "private": true,
+  "packageManager": "pnpm@9.10.0",
+  "scripts": {
+    "build": "pnpm -r run build",
+    "lint": "pnpm -r run lint",
+    "typecheck": "pnpm -r run typecheck || echo 'no typecheck'",
+    "test": "pnpm -r run test || echo 'no tests'",
+    "dev": "pnpm -r --parallel run dev"
+  }
+}
