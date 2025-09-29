@@ -1,6 +1,7 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { supabase } from './lib/supabaseClient';
 import api from './lib/api';
+import InterviewForm from './components/InterviewForm';
 
 type Week = { id: number; title: string | null; status: string };
 
@@ -110,9 +111,16 @@ function Weeks() {
 }
 
 export default function App() {
+  const [tab, setTab] = useState<'weeks' | 'interview'>('weeks');
   return (
     <AuthGate>
-      <Weeks />
+      <div className="p-4">
+        <div className="flex gap-2 mb-4">
+          <button className={`px-3 py-2 rounded ${tab==='weeks'?'bg-blue-600 text-white':'bg-gray-200'}`} onClick={() => setTab('weeks')}>Недели</button>
+          <button className={`px-3 py-2 rounded ${tab==='interview'?'bg-blue-600 text-white':'bg-gray-200'}`} onClick={() => setTab('interview')}>Интервью</button>
+        </div>
+        {tab === 'weeks' ? <Weeks /> : <InterviewForm />}
+      </div>
     </AuthGate>
   );
 }
